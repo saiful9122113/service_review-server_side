@@ -79,6 +79,19 @@ async function run(){
             res.send(review);
         })
         
+       
+
+        //api for update review
+        app.put("/update-review", async(req, res) => {
+            const {review} = req.body;
+            const id = req.query.id;
+            const updatedReview = await reviewCollection.updateOne({_id: ObjectId(id)}, {
+                $set: {review: review}
+            }) 
+
+            res.send(updatedReview)
+        })
+
 
         //get all review by fixed service-id
         app.get('/review', async(req, res) =>{
