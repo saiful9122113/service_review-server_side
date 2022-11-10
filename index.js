@@ -79,7 +79,12 @@ async function run(){
             res.send(review);
         })
         
-       
+        //api for delete review
+        app.delete('/delete-review', async(req, res) =>{
+            const cursor = await reviewCollection.deleteOne({_id: ObjectId(req.query.id)});
+            console.log(cursor)
+            res.send(cursor);
+        })
 
         //api for update review
         app.put("/update-review", async(req, res) => {
